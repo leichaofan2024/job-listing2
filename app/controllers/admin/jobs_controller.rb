@@ -1,19 +1,13 @@
-class JobsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :update, :edit, :destroy]
+class Admin::JobsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :edit, :destroy, :update]
+  before_action :require_is_admin
+
+
   def show
     @job = Job.find(params[:id])
   end
-  def index
-    flash[:notice] = "欢迎来到职缺世界，总有一个适合你！"
-    @jobs = Job.all
-  end
   def new
     @job = Job.new
-  end
-  def destroy
-    @job = Job.find(params[:id])
-    @job.destroy
-    redirect_to jobs_path
   end
   def edit
     @job = Job.find(params[:id])
@@ -21,7 +15,7 @@ class JobsController < ApplicationController
   def update
     @job = Job.find(params[:id])
     if @job.update(job_params)
-      redirect_to jobs_path
+      redirect_to admin_jobs_path
     else
       render :edit
     end
@@ -29,13 +23,23 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(job_params)
     if @job.save
-      redirect_to jobs_path
+      redirect_to admin_jobs_path
     else
       render :new
     end
+  end
+  def destroy
+    @job = Job.find(params[:id])
+    @job.destroy
+    redirect_to admin_jobs_path
+  end
+  def index
+    flash[:notice] = "你好，管理员！"
+    @jobs = Job.all
   end
   private
   def job_params
     params.require(:job).permit(:title, :description)
   end
+
 end

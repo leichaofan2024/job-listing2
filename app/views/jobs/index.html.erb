@@ -1,8 +1,16 @@
- <table class="table table-boldered">
+
 
   <div class="pull-right">
     <%= link_to("发布职缺", new_job_path, :class => "btn btn-default" ) %>
  </div>
+ <br><br>
+
+  <table class="table table-boldered">
+    <tr>
+      <td><%= "职缺" %></td>
+      <td><%= "操作选项" %></td>
+      <td><%= "发布时间" %></td>
+    </tr>
    <% @jobs.each do |job| %>
   <tr>
     <td><%= link_to(job.title, job_path(job)) %></td>

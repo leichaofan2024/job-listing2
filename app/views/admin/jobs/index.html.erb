@@ -1,0 +1,28 @@
+<div class="pull-right">
+  <%= link_to("发布职缺", new_admin_job_path, :class => "btn btn-default") %>
+</div>
+<br><br>
+
+<table class="table table-boldered">
+<tr>
+  <td><%= "职缺" %></td>
+  <td><%= "操作选项" %></td>
+  <td><%= "发布时间" %></td>
+<% @jobs.each do |job| %>
+
+
+  <tr>
+    <td>
+      <%= link_to(job.title, admin_job_path(job)) %>
+    </td>
+    <td>
+      <%= link_to("Edit",edit_admin_job_path(job)) %> |
+      <%= link_to("Destroy",admin_job_path(job), :method => :delete, :data =>{ :confirm => "确定要删除吗？"}) %>
+    </td>
+    <td>
+      <%= job.created_at %>
+    </td>
+  </tr>
+  <% end %>
+
+</table>
