@@ -4,7 +4,7 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
   end
   def index
-    flash[:notice] = "欢迎来到职缺世界，总有一个适合你！"
+    flash[:notice] = "欢迎来到职缺的世界，总有一个适合你！"
     @jobs = Job.where(:is_hidden => false).order("created_at DESC")
 
   end
