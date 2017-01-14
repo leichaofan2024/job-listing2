@@ -8,9 +8,15 @@ class JobsController < ApplicationController
     end
   end
   def index
-    flash[:notice] = "欢迎来到职缺的世界，总有一个适合你！"
-    @jobs = Job.where(:is_hidden => false).order("created_at DESC")
-
+   flash[:notice] = "欢迎来到职缺的世界，总有一个适合你！"
+    @jobs = case params[:order]
+    when 'by_upper_bound'
+      Job.published.order('wage_upper_bound DESC')
+    when 'by_lower_bound'
+      Job.published.order('wage_lower_bound DESC')
+    else
+    Job.published.recent
+    end 
   end
   def new
     @job = Job.new
