@@ -12,7 +12,7 @@ class Admin::JobsController < ApplicationController
     @job = Job.find(params[:id])
     @job.hide!
     redirect_to :back
-  end 
+  end
   def show
     @job = Job.find(params[:id])
   end

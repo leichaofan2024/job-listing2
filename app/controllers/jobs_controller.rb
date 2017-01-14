@@ -16,7 +16,7 @@ class JobsController < ApplicationController
       Job.published.order('wage_lower_bound DESC')
     else
     Job.published.recent
-    end 
+    end
   end
   def new
     @job = Job.new
