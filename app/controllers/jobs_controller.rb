@@ -2,6 +2,10 @@ class JobsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :update, :edit, :destroy]
   def show
     @job = Job.find(params[:id])
+    if @job.is_hidden
+      flash[:warning] = "你没有访问权限！"
+      redirect_to root_path
+    end
   end
   def index
     flash[:notice] = "欢迎来到职缺的世界，总有一个适合你！"
