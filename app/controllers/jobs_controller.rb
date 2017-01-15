@@ -1,6 +1,7 @@
 class JobsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :update, :edit, :destroy]
   def show
+    flash[:notice] = "请仔细阅读哦"
     @job = Job.find(params[:id])
     if @job.is_hidden
       flash[:warning] = "你没有访问权限！"

@@ -14,6 +14,7 @@ class Admin::JobsController < ApplicationController
     redirect_to :back
   end
   def show
+    flash[:notice] = "请仔细阅读哦"
     @job = Job.find(params[:id])
   end
   def new
