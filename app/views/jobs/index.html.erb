@@ -20,14 +20,16 @@
 
  <br><br>
 
-  <table class="table table-boldered">
+  <table class="table table-boldered table-striped custab">
+    <th>
     <tr>
-
+      <td><%= "职缺信息" %></td>
       <td><%= "薪资下限" %></td>
       <td><%= "薪资上限" %></td>
 
       <td><%= "发布时间" %></td>
     </tr>
+  </th>
    <% @jobs.each do |job| %>
   <tr>
     <td><%= link_to(job.title, job_path(job)) %></td>

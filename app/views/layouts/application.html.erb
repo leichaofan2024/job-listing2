@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>未来招聘网</title>
+    <title>真·24K Offer</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  <div class='row'>
 
+    <%= render 'common/navbar' %>
+  </div>
   <body>
-    <div calss'container-fluid'>
-      <%= render 'common/navbar' %>
+
+    <div class="container-fluid">
       <%= render "common/flashes" %>
       <%= yield %>
 
+    </div>
+    <div>
+      <%= link_to("Return", jobs_path, :class => "btn btn-xs btn-success") %>
     </div>
     <%= render 'common/footer' %>
   </body>

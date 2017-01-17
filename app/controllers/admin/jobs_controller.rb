@@ -45,7 +45,7 @@ class Admin::JobsController < ApplicationController
     redirect_to admin_jobs_path
   end
   def index
-    flash[:notice] = "你好，管理员！"
+    
     @jobs = Job.all
   end
   private

@@ -1,15 +1,15 @@
 class JobsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :update, :edit, :destroy]
   def show
-    flash[:notice] = "请仔细阅读哦"
+
     @job = Job.find(params[:id])
     if @job.is_hidden
-      flash[:warning] = "你没有访问权限！"
+
       redirect_to root_path
     end
   end
   def index
-   flash[:notice] = "欢迎来到职缺的世界，总有一个适合你！"
+
     @jobs = case params[:order]
     when 'by_upper_bound'
       Job.published.order('wage_upper_bound DESC')
@@ -41,7 +41,7 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(job_params)
     if @job.save
-      redirect_to jobs_path
+      redirect_to admin_jobs_path
     else
       render :new
     end
